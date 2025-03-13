@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 console.log(process.env.CLIENT_URL);
 
-// Trust proxy if behind a reverse proxy (e.g., Heroku, Nginx)
+// Trust proxy if behind a reverse proxy
 app.set('trust proxy', 1);
 
 // Middleware
