@@ -9,7 +9,7 @@ function App() {
   const claimCoupon = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/claim-coupon', {
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/claim-coupon`, {
         withCredentials: true,
       });
       console.log(response.data);
