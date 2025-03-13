@@ -1,11 +1,11 @@
 const rateLimit = require('express-rate-limit');
 
 const limiter = rateLimit({
-  windowMs: 5 * 1000, // 5 seconds
+  windowMs: 60 * 60 * 1000, // 1 hour
   max: 1, // 1 request per IP
   keyGenerator: (req) => req.ip, // Use IP as the key
   message: { 
-    message: 'You can only claim one coupon every 5 seconds. Please try again later.',
+    message: 'You can only claim one coupon per hour. Please try again later.',
     status: 429,
   },
   handler: (req, res, next, options) => {

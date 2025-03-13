@@ -10,10 +10,10 @@ const couponController = async (req, res) => {
     const existingClaim = await UserClaim.findOne({ $or: [{ ip }, { cookieId }] });
     if (existingClaim) {
       const timeSinceLastClaim = Date.now() - existingClaim.lastClaimTime;
-      if (timeSinceLastClaim < 5 * 1000) { // 5 seconds
-        const remaining = Math.ceil((5 * 1000 - timeSinceLastClaim) / 1000); // Remaining time in seconds
+      if (timeSinceLastClaim < 60 * 60 * 1000) { // 1 hour
+        const remaining = Math.ceil((60 * 60 * 1000 - timeSinceLastClaim) / 1000 / 60);
         return res.status(429).json({
-          message: `Please wait ${remaining} seconds before claiming another coupon.`,
+          message: `Please wait ${remaining} minutes before claiming another coupon.`,
         });
       }
     }
